@@ -111,6 +111,18 @@
     },
     {
       "chainId": 101,
+      "address": "7BjGUzsCJBXuT21QS4tkEdWf4DyFbJz4wAZRbkoCVizm",
+      "symbol": "XSGD",
+      "name": "Wormhole wrapped XSGD(eth)",
+      "decimals": 8,
+      "logoURI": "https://i.imgur.com/iXKK4YQ.png",
+      "extensions": {
+        "serumV3Usdc": "9mJLgcpgwQtSSFixeUAbqw6JGiP8Px1CpbMzhuG6NCdk",
+        "website": "https://straitsx.com"
+      }
+    },
+    {
+      "chainId": 101,
       "address": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
       "symbol": "USDT",
       "name": "USDT",

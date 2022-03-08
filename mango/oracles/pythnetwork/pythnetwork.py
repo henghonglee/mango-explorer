@@ -107,8 +107,8 @@ class PythOracle(Oracle):
             )
 
         factor = Decimal(10) ** price_data.expo
-        price = price_data.agg.price * factor
-        confidence = price_data.agg.conf * factor
+        price = 1 / (price_data.agg.price * factor)
+        confidence = (price_data.agg.conf * factor) / (price_data.agg.price * factor)
 
         # Pyth has no notion of bids, asks, or spreads so just provide the single price.
         return Price(
@@ -158,8 +158,9 @@ class PythOracleProvider(OracleProvider):
     def oracle_for_market(
         self, _: Context, market: LoadedMarket
     ) -> typing.Optional[Oracle]:
-        pyth_symbol = self._market_symbol_to_pyth_symbol(market.symbol)
+        pyth_symbol = 'FX.USD/SGD'
         products = self._fetch_all_pyth_products(self.context, self.address)
+        # breakpoint()
         for product in products:
             if product.attr["symbol"] == pyth_symbol:
                 return PythOracle(self.context, market, product)
@@ -204,7 +205,6 @@ class PythOracleProvider(OracleProvider):
             raise Exception(
                 f"[{context.name}] Mapping account {account_info.address} is not a Pyth account."
             )
-
         return mapping
 
     def _fetch_all_pyth_products(
